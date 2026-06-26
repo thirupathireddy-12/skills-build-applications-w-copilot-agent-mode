@@ -1,5 +1,5 @@
 import express from 'express';
-import './database.js';
+import './config/database.js';
 import usersRouter from './routes/users.js';
 import teamsRouter from './routes/teams.js';
 import activitiesRouter from './routes/activities.js';
@@ -23,13 +23,6 @@ app.use('/api/activities', activitiesRouter);
 app.use('/api/leaderboard', leaderboardRouter);
 app.use('/api/workouts', workoutsRouter);
 
-app.listen(port, async () => {
+app.listen(port, () => {
   console.log(`Backend listening on http://${apiHost}`);
-
-  try {
-    await mongoose.connect(mongoUri);
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('MongoDB connection error:', error);
-  }
 });
